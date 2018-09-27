@@ -4,4 +4,6 @@ you can play Audio/Video from the server
 # To Run Media Server And Client App
 Run MediaServer.jar file using following command.
 Access application with Ip Address of Server (IP address of machine where MediaServer.jar is running) <IPAddress>:8080
+  
+  ## java -jar MediaServer.jar
 
