@@ -1,0 +1,49 @@
+
+
+
+
+ 
+ 
+<mat-card>
+  <mat-card>
+   <p>Media Server</p> 
+   <mat-form-field>
+    <input matInput placeholder="Hostname" value="http://192.168.1.108" [(ngModel)]="url">  
+  </mat-form-field>
+  <button mat-fab color color="primary" (click)="getDriveList(url)">Add</button>
+
+  <mat-form-field style="margin-left:10%;">
+    <input matInput placeholder="Search" value="" #searchkeyword>  
+  </mat-form-field>
+  </mat-card>
+<br>
+  <mat-card>
+    <b>Drives :</b>
+    <div class="button-row">
+      <button *ngFor="let drive of drives" (click)="getFolders(drive)" mat-flat-button color="primary">{{drive}}</button>   
+    </div>
+  </mat-card>
+ 
+
+  <mat-card>
+
+      <mat-card *ngFor="let file of files | filter:'filename': searchkeyword.value" >
+          <a *ngIf="!file.playable" (click)="getFolders(file.path)" class="pointer">{{file.filename}}</a> 
+          <a *ngIf="file.playable" class="pointer">{{file.filename}}</a>   
+          <a href="{{file.path}}" class="pointer" *ngIf="file.playable">  
+         
+            <mat-icon class="icon-class" svgIcon="play"></mat-icon>
+         
+          </a>
+           <br>
+            
+      </mat-card>
+
+  </mat-card>
+</mat-card>
+
+<vg-player>
+  <video [vgMedia]="media" #media id="singleVideo" preload="auto" controls>
+      <source src="http://192.168.1.105:8080/video/C:@xampp@htdocs@1.mkv" type="video/mp4">
+  </video>
+</vg-player>
