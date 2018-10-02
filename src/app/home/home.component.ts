@@ -66,6 +66,8 @@ export class HomeComponent implements OnInit {
 
 
   openSnackBar(message: string, action: string,returnId:number) {
+    if(action=='')
+       action='Close';
     let snackBarRef = this.snackBar.open(message, action);
     snackBarRef.onAction().subscribe(()=>this.onSnackBarActionButtonClick(returnId))
   }
